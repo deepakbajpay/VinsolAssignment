@@ -16,7 +16,6 @@ public class ScheduleItemViewModel {
         this.startTime = new ObservableField<>(scheduleItem.getStartTime());
         this.endTime = new ObservableField<>(scheduleItem.getEndTime());
         this.description = new ObservableField<>(scheduleItem.getDescription());
-        System.out.println("ScheduleItemViewModel.ScheduleItemViewModel "+description);
         this.participants = new ObservableField<List<String>>(scheduleItem.getParticipants());
     }
 

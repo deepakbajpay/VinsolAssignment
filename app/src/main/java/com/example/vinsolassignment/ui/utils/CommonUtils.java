@@ -23,9 +23,11 @@ import android.graphics.drawable.ColorDrawable;
 
 import com.example.vinsolassignment.R;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public final class CommonUtils {
 
@@ -45,4 +47,22 @@ public final class CommonUtils {
         progressDialog.setCanceledOnTouchOutside(false);
         return progressDialog;
     }
+
+    public static String getTimestamp(String format, Date date) {
+        return new SimpleDateFormat(format, Locale.getDefault()).format(date);
+    }
+
+    public static Date getDateFromString(String time,String currentFormat) {
+        DateFormat format = new SimpleDateFormat(currentFormat, Locale.ENGLISH);
+        Date date = null;
+        try {
+            date = format.parse(time);
+            System.out.println(date);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

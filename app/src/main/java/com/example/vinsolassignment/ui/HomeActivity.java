@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.vinsolassignment.R;
 import com.example.vinsolassignment.databinding.ActivityHomeBinding;
 import com.example.vinsolassignment.ui.base.BaseActivity;
-import com.example.vinsolassignment.ui.fragments.MySchedulesFragment;
+import com.example.vinsolassignment.ui.schedule.MySchedulesFragment;
 import com.example.vinsolassignment.ui.schedule.HomeViewModel;
 import com.example.vinsolassignment.ui.utils.ViewModelProviderFactory;
 

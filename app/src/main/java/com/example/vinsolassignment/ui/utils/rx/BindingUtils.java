@@ -24,10 +24,6 @@ import com.example.vinsolassignment.ui.schedule.ScheduleAdapter;
 
 import java.util.List;
 
-/**
- * Created by amitshekhar on 11/07/17.
- */
-
 public final class BindingUtils {
 
     private BindingUtils() {

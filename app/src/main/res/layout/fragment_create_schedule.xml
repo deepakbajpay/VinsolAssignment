@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.vinsolassignment.ui.create_schedule.CreateScheduleViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="40dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:drawableStart="@drawable/ic_prev"
+                android:drawableLeft="@drawable/ic_prev"
+                android:drawablePadding="4dp"
+                android:onClick="@{()->viewModel.goBack()}"
+                android:text="@string/back"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/schedule_a_meeting"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/header"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/meeting_date_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_corner_grey_bg"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:drawableRight="@drawable/ic_arrow_down"
+                android:hint="@string/meeting_date"
+                android:inputType="none"
+                android:text="@{viewModel.date}"
+                android:onClick="@{()-> viewModel.onPickDate()}"
+                android:padding="12dp"
+                android:textSize="18sp"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:id="@+id/meeting_start_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@{viewModel.startTime}"
+                android:background="@drawable/rounded_corner_grey_bg"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:drawableRight="@drawable/ic_arrow_down"
+                android:hint="@string/start_time"
+                android:inputType="none"
+                android:onClick="@{()-> viewModel.pickStartTime()}"
+                android:padding="12dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/meeting_end_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.endTime}"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_corner_grey_bg"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:drawableRight="@drawable/ic_arrow_down"
+                android:hint="@string/end_time"
+                android:inputType="none"
+                android:onClick="@{()-> viewModel.pickEndTime()}"
+                android:padding="12dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/meeting_note_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_corner_white_bg"
+                android:gravity="top|start"
+                android:hint="@string/note"
+                android:inputType="textMultiLine"
+                android:minHeight="100dp"
+                android:padding="8dp" />
+
+
+            <Button
+                android:id="@+id/schedule_meeting_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_corner_bg"
+                android:onClick="@{()->viewModel.submit()}"
+                android:text="@string/submit"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/address_looking_up"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

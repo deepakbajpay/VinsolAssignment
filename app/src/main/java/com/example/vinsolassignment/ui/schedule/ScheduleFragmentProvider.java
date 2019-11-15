@@ -16,14 +16,9 @@
 
 package com.example.vinsolassignment.ui.schedule;
 
-import com.example.vinsolassignment.ui.fragments.MySchedulesFragment;
-
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
-/**
- * Created by amitshekhar on 14/09/17.
- */
 @Module
 public abstract class ScheduleFragmentProvider {
 

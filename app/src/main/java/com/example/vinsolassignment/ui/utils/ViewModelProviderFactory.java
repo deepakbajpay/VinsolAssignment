@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.vinsolassignment.data.remote.APIClient;
+import com.example.vinsolassignment.ui.create_schedule.CreateScheduleFragment;
+import com.example.vinsolassignment.ui.create_schedule.CreateScheduleViewModel;
 import com.example.vinsolassignment.ui.schedule.HomeViewModel;
 import com.example.vinsolassignment.ui.schedule.ScheduleViewModel;
 import com.example.vinsolassignment.ui.utils.rx.SchedulerProvider;
@@ -36,6 +38,9 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         }else if (modelClass.isAssignableFrom(HomeViewModel.class)) {
             //noinspection unchecked
             return (T) new HomeViewModel(dataManager, schedulerProvider);
+        }else if (modelClass.isAssignableFrom(CreateScheduleViewModel.class)) {
+            //noinspection unchecked
+            return (T) new CreateScheduleViewModel(dataManager, schedulerProvider);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

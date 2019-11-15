@@ -18,21 +18,16 @@ package com.example.vinsolassignment.ui.schedule;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.vinsolassignment.ui.fragments.MySchedulesFragment;
-
 import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by amitshekhar on 14/09/17.
- */
 @Module
 public class ScheduleFragmentModule {
 
     @Provides
-    ScheduleAdapter provideBlogAdapter() {
+    ScheduleAdapter provideScheduleAdapter() {
         return new ScheduleAdapter(new ArrayList<>());
     }
 

@@ -18,18 +18,17 @@ package com.example.vinsolassignment.di.builder;
 
 
 import com.example.vinsolassignment.ui.HomeActivity;
+import com.example.vinsolassignment.ui.create_schedule.CreateScheduleFragmentProvider;
 import com.example.vinsolassignment.ui.schedule.ScheduleFragmentProvider;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
-/**
- * Created by amitshekhar on 14/09/17.
- */
 @Module
 public abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = {ScheduleFragmentProvider.class})
+    @ContributesAndroidInjector(modules = {ScheduleFragmentProvider.class, CreateScheduleFragmentProvider.class})
     abstract HomeActivity bindMainActivity();
+
 
 }

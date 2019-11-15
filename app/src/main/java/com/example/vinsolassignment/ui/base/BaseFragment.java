@@ -13,6 +13,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
+import com.example.vinsolassignment.R;
+
 import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment {
@@ -100,14 +102,19 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         return mActivity != null && mActivity.isNetworkConnected();
     }
 
-  /*  public void openActivityOnTokenExpire() {
-        if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
-        }
-    }
-*/
+    /*  public void openActivityOnTokenExpire() {
+          if (mActivity != null) {
+              mActivity.openActivityOnTokenExpire();
+          }
+      }
+  */
     private void performDependencyInjection() {
         AndroidSupportInjection.inject(this);
+    }
+
+    public void openFragment(Fragment fragment, String previousFragmentTag) {
+        getBaseActivity().getSupportFragmentManager().beginTransaction().add(R.id.home_container,
+                fragment, fragment.getClass().getName()).addToBackStack(previousFragmentTag).commit();
     }
 
     public interface Callback {

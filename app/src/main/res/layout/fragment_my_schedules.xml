@@ -12,16 +12,20 @@
             type="com.example.vinsolassignment.ui.schedule.ScheduleViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:minHeight="40dp">
+            android:minHeight="40dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/prev_btn"
@@ -34,7 +38,7 @@
                 android:drawableLeft="@drawable/ic_prev"
                 android:drawablePadding="4dp"
                 android:onClick="@{()->viewModel.previousDaySchedule()}"
-                android:text="PREV"
+                android:text="@string/prev"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -42,10 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawablePadding="4dp"
                 android:onClick="@{()->viewModel.openDatePicker()}"
-                android:text="@{viewModel.currentDate}"
-                android:textColor="@android:color/white" />
+                android:text="@{viewModel.dateToShow}"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/next_btn"
@@ -54,11 +58,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:drawableStart="@drawable/ic_next"
-                android:drawableLeft="@drawable/ic_next"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableRight="@drawable/ic_next"
                 android:drawablePadding="4dp"
                 android:onClick="@{()->viewModel.getNextDaySchedule()}"
-                android:text="NEXT"
+                android:text="@string/next"
                 android:textColor="@android:color/white" />
         </RelativeLayout>
 
@@ -66,8 +70,33 @@
             android:id="@+id/scheduleRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/schedule_meeting_btn"
+            android:layout_below="@id/header"
             app:adapter="@{viewModel.scheduleListLiveData}"
             tools:listitem="@layout/schedule_adapter_item" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/schedule_meeting_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner_bg"
+            android:onClick="@{()->viewModel.scheduleMeeting()}"
+            android:text="@string/schedule_company_meeting"
+            android:textColor="@android:color/white" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/address_looking_up"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
 </layout>
